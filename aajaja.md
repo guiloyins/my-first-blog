@@ -1,17 +1,17 @@
 # api-doc
-Documentação do serviço API Marketplace para integração na Estante Virtual
+Documentação do serviço API Marketplace para integração na [Júlia Kastrup]
 
 
 ### Sobre a API
 
-O serviço de API da Estante Virtual fornece uma forma alternativa de criar, atualizar e remover produtos na EV, além de também receber e enviar informações de pedidos.
+O serviço de API da [Júlia Kastrup] fornece uma forma alternativa de criar, atualizar e remover produtos na EV, além de também receber e enviar informações de pedidos.
 
 
 ### Modo de usar
 
 Todos os métodos da nossa API esperam um token de autenticação, válido por 24h. Para obtê-lo, é necessário seguir o passo abaixo:
 
-```curl -X POST --data “email=email&password=senha” http://marketplace-stg.estantevirtual.com.br/auth/login```
+```curl -X POST --data “email=email&password=senha” https://api-marketplace.estantevirtual.com.br/auth/login```
 
 O retorno deve ser um hash com o valor do auth_token. Exemplo:
 
@@ -84,11 +84,11 @@ Caso o produto já exista, a API deve permitir que seus dados sejam atualizados.
 
 Campos: 
 
-- categoria: [nome da Estante utilizada na Estante Virtual](https://www.estantevirtual.com.br/conteudo/lista-estantes)
-- **categoria_id**: ID da categoria na Estante Virtual
+- categoria: [nome da Estante utilizada na [Júlia Kastrup]](https://www.estantevirtual.com.br/conteudo/lista-estantes)
+- **categoria_id**: ID da categoria na [Júlia Kastrup]
 - **autores**: autor ou autores do livro
 - **codigo**: identificador do produto no vendedor
-- **id_vendedor**: ID do vendedor na Estante Virtual
+- **id_vendedor**: ID do vendedor na [Júlia Kastrup]
 - **marca**: editora do livro
 - **nome**: título do livro
 - **descricao**: estado de conservação do livro ou, em caso de livros novos, sinopse.
