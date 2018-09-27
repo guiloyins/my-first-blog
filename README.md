@@ -134,10 +134,10 @@ _Por padrão, esse campo é definido como "Pt", caso seja nulo._
 _Endpoint que recebe codigo_f1 e o valor do produto e:_
 
 - Verifica se o produto existe na base local da api_marketplace
--- Caso não exista, retorna erro
--- Caso exista:
---- Atualiza o preço do produto na base de dados local
---- Chama api da bookshelf que faz update do preço de todos itens ativos na tabela catalogo do evmain do vendedor em questão.
+    Caso não exista, retorna erro
+    Caso exista:
+        Atualiza o preço do produto na base de dados local
+        Chama api da bookshelf que faz update do preço de todos itens ativos na tabela catalogo do evmain do vendedor em questão.
 
 ##### PUT Preços (F1 -> EV):
 
@@ -173,22 +173,22 @@ OU
 _Endpoint que rece isbn e a quantidade do produto e:_ 
 
 - Verifica se o produto existe na base local da api_marketplace
--- Caso não exista retorna erro.
--- Caso exista:
---- Caso não tenha preço vinculado retorna erro.
---- Caso exista:
----- Chama api bookshelf que retorna a quantidade de itens em estoque para o vendedor em questão
------ Caso a quantidade enviada seja maior que a quantidade no acervo:
------- Busca os dados do título e último preço na base local
------- Faz um parse dos dados para o padrão de inserção de dados da bookshelf
------- Determina a quantidade a ser adicionada (exemplo: temos 7 no acervo e o vendedor setou a quantidade em 10 exemplares, temos que adicionar 3 exemplares na catálogo)
------- Chama api da bookshelf e passa dados do exemplar e a quantidade.
------- Bookshelf insere os registros e retorna sucesso ou falha. 
------- Retorna sucesso ou falha de acordo com o resultado da inserção na bookshelf
------ Caso contrário
------- Chama a api da bookshelf e passa o isbn e quantidade de registros a excluir.
------- A bookshelf apaga os últimos itens cadastrados na catalogo
------- Chama api da bookshelf que faz update do preço de todos itens ativos na tabela catalogo do evmain do vendedor em questão.
+    Caso não exista retorna erro.
+    Caso exista:
+        Caso não tenha preço vinculado retorna erro.
+        Caso exista:
+             Chama api bookshelf que retorna a quantidade de itens em estoque para o vendedor em questão
+                 Caso a quantidade enviada seja maior que a quantidade no acervo:
+                     Busca os dados do título e último preço na base local
+                     Faz um parse dos dados para o padrão de inserção de dados da bookshelf
+                     Determina a quantidade a ser adicionada (exemplo: temos 7 no acervo e o vendedor setou a quantidade em 10 exemplares, temos que adicionar 3 exemplares na catálogo)
+                     Chama api da bookshelf e passa dados do exemplar e a quantidade.
+                     Bookshelf insere os registros e retorna sucesso ou falha. 
+                     Retorna sucesso ou falha de acordo com o resultado da inserção na bookshelf
+                 Caso contrário
+                     Chama a api da bookshelf e passa o isbn e quantidade de registros a excluir.
+                     A bookshelf apaga os últimos itens cadastrados na catalogo
+                     Chama api da bookshelf que faz update do preço de todos itens ativos na tabela catalogo do evmain do vendedor em questão.
 
 ##### PUT Estoques (F1 -> EV):
 
@@ -230,10 +230,10 @@ Endpoint que atualiza o status de um determinado pedido:
 
 - Recebe o id do pedido na ev, status e o código de rastreio (se houver)
 - Busca o status na EV a partir de uma tabela de de-para
--- Caso o status não exista, retorna erro.
--- Caso o status exista: 
---- chama a api do Roma passando id do pedido, status e o código de rastreio (se houver)
---- Retorna sucesso ou erro de acordo com o que o Roma retornar.
+   Caso o status não exista, retorna erro.
+    Caso o status exista: 
+        chama a api do Roma passando id do pedido, status e o código de rastreio (se houver)
+        Retorna sucesso ou erro de acordo com o que o Roma retornar.
 
 
 ##### PUT Pedido sentido (EV -> F1 e F1 -> EV)
@@ -273,6 +273,7 @@ OU
 De 5 em 5 minutos nós devemos fazer um pooling e mandar os pedidos em standby desde a última vez que enviamos dados com sucesso.
 
 - Busca pedidos em standby por data do Roma
+
 Para cada pedido:
 - Busca os dados do cliente
 - Chama o post_pedido
