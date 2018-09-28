@@ -70,7 +70,7 @@ Caso o produto já exista, a API deve permitir que seus dados sejam atualizados.
           "largura":"25.00",
           "peso":"200",
           "idioma": "Pt",
-"imagens":["https:\/\/images-na.ssl-images-amazon.com\/images\/I\/91xWp9kdIDL._SX355_.jpg"],
+          "imagens":["https:\/\/images-na.ssl-images-amazon.com\/images\/I\/91xWp9kdIDL._SX355_.jpg"],
           "status": "Ativo",
           "estoque": "1",
           "valor_de": "17.0",
