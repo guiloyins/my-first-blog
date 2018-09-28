@@ -47,7 +47,8 @@ Caso o produto já exista, a API deve permitir que seus dados sejam atualizados.
 ##### POST ou PUT Produtos (Vendedor / Integrador -> EV):
 
 
-```{
+```
+{
   "produtos": [
     {
       "categoria": "critica literaria",
@@ -141,7 +142,8 @@ _Endpoint que recebe codigo_f1 e o valor do produto e:_
 
 ##### PUT Preços (F1 -> EV):
 
-```{
+```
+{
   "precos":
     [
        {
@@ -158,11 +160,15 @@ _Endpoint que recebe codigo_f1 e o valor do produto e:_
        },
     ]
 }
+```
 Retorno:
+```
 {
    "success": 201
 }
+```
 OU
+```
 {
    "error": 404,
    "message" : "Produto inválido."
@@ -228,12 +234,12 @@ OU
 ### Atualizar pedido
 Endpoint que atualiza o status de um determinado pedido:
 
-- Recebe o id do pedido na ev, status e o código de rastreio (se houver)
-- Busca o status na EV a partir de uma tabela de de-para
+- Recebe o ID do pedido na ev, status e o código de rastreio (se houver)
+- Busca o status na EV
   - Caso o status não exista, retorna erro.
   - Caso o status exista: 
-    - chama a api do Roma passando id do pedido, status e o código de rastreio (se houver)
-    - Retorna sucesso ou erro de acordo com o que o Roma retornar.
+    - chama a api do nosso serviço passando id do pedido, status e o código de rastreio (se houver)
+    - Retorna sucesso ou erro de acordo com o que o nosso serviço retornar.
 
 
 ##### PUT Pedido sentido (EV -> F1 e F1 -> EV)
@@ -244,9 +250,11 @@ Endpoint que atualiza o status de um determinado pedido:
     {
     "id_vendedor": 2124720,
     "marketplace_id_pedido": 101,
-    "status_codigo" : "NEW | APPROVED | CANCELED | SHIPPED",
-    "razao_cancelamento" : "Campo preenchido se necessário",
-    "rastreio" : "Campo preenchido se necessário"
+    "status_codigo" : "[STATUS_DO_PEDIDO]",                                                     # status aceitos: NEW | APPROVED | CANCELED | SHIPPED
+    "razao_cancelamento" : "Campo preenchido se necessário",                                  # deve ser preenchido no envio do status CANCELED
+    "rastreio" : "codigo de rastreio correios",                                               # deve ser preenchido no envio do status SHIPPED, quando a entrega for via Correios 
+    "url_rastreio":"url da transportadora"                                                    # deve ser preenchido  no envio do status SHIPPED, quando a entrega for via transportadora 
+
     }
 }
 ```
@@ -280,7 +288,8 @@ Para cada pedido:
 
 ##### POST pedido (EV -> F1):
 
-```{ 
+```
+{ 
    "id_vendedor":"340690",
    "pedidos":[ 
       { 
@@ -297,22 +306,22 @@ Para cada pedido:
          "valor_total_desconto":0,
          "cliente":{ 
             "tipo":"PF",
-            "razao_social":"Ana Carolina Ferreira dos Santos",
+            "razao_social":"Ana Silva",
             "cpf_cnpj":"05773931702",
-            "email":"aferreira@estantevirtual.com.br",
+            "email":"asilva@google.com.br",
             "data_aniversario":nil,
-            "telefone1":"21 986884820"
+            "telefone1":"21 23456781"
          },
          "endereco":{ 
             "tipo_endereco":"Entrega",
-            "nome_destinatario":"Ana Carolina Ferreira dos Santos",
+            "nome_destinatario":"Ana Silva",
             "estado":"Rio de Janeiro",
             "cidade":"Rio de Janeiro",
-            "bairro":"Campinho",
+            "bairro":"Centro",
             "logradouro":"Rua Maricá",
-            "numero":"442",
-            "complemento":"ap 304",
-            "cep":"21320-070"
+            "numero":"0",
+            "complemento":"ap 101",
+            "cep":"22220-010"
          },
          "produtos":[ 
             { 
@@ -329,7 +338,8 @@ Para cada pedido:
  
 Retorno:
 
-```{
+```
+{
    "success": 201,
    "id_pedido": 20
 }
