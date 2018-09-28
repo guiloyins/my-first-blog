@@ -250,7 +250,7 @@ Endpoint que atualiza o status de um determinado pedido:
     {
     "id_vendedor": 2124720,
     "marketplace_id_pedido": 101,
-    "status_codigo" : "[STATUS_DO_PEDIDO]",                                                     # status aceitos: NEW | APPROVED | CANCELED | SHIPPED
+    "status_codigo" : "[STATUS_DO_PEDIDO]",                                                   # status aceitos: NEW | APPROVED | CANCELED | SHIPPED
     "razao_cancelamento" : "Campo preenchido se necessário",                                  # deve ser preenchido no envio do status CANCELED
     "rastreio" : "codigo de rastreio correios",                                               # deve ser preenchido no envio do status SHIPPED, quando a entrega for via Correios 
     "url_rastreio":"url da transportadora"                                                    # deve ser preenchido  no envio do status SHIPPED, quando a entrega for via transportadora 
