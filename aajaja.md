@@ -20,13 +20,13 @@ O retorno deve ser um hash com o valor do auth_token. Exemplo:
 
 ### Endpoints
 
-- Autenticação (PUT):
+- Autenticação (POST):
 `https://api-marketplace.estantevirtual.com.br/auth/login`
 
-- Criação de Produto (PUT):
+- Criação de Produto (POST):
 `https://api-marketplace.estantevirtual.com.br/produtos`
 
-- Criação de Produto (PUT):
+- Atualização de Produto (PUT):
 `https://api-marketplace.estantevirtual.com.br/produtos`
 
 - Atualização de Estoque (PUT):
@@ -135,10 +135,10 @@ _Por padrão, esse campo é definido como "Pt", caso seja nulo._
 _Endpoint que recebe codigo_f1 e o valor do produto e:_
 
 - Verifica se o produto existe na base local da api_marketplace
-    Caso não exista, retorna erro
-    Caso exista:
-        Atualiza o preço do produto na base de dados local
-        Chama api da bookshelf que faz update do preço de todos itens ativos na tabela catalogo do evmain do vendedor em questão.
+  - Caso não exista, retorna erro
+  - Caso exista:
+    - Atualiza o preço do produto na base de dados local
+    - Chama api do nosso serviço que faz update do preço de todos itens ativos na tabela catalogo do evmain do vendedor em questão.
 
 ##### PUT Preços (F1 -> EV):
 
@@ -186,15 +186,15 @@ _Endpoint que rece isbn e a quantidade do produto e:_
       - Chama api bookshelf que retorna a quantidade de itens em estoque para o vendedor em questão
       - Caso a quantidade enviada seja maior que a quantidade no acervo:
       - Busca os dados do título e último preço na base local
-      - Faz um parse dos dados para o padrão de inserção de dados da bookshelf
+      - Faz um parse dos dados para o padrão de inserção de dados do nosso serviço
       - Determina a quantidade a ser adicionada (exemplo: temos 7 no acervo e o vendedor setou a quantidade em 10 exemplares, temos que adicionar 3 exemplares na catálogo)
-      - Chama api da bookshelf e passa dados do exemplar e a quantidade.
-      - Bookshelf insere os registros e retorna sucesso ou falha. 
-      - Retorna sucesso ou falha de acordo com o resultado da inserção na bookshelf
+      - Chama api do nosso serviço e passa dados do exemplar e a quantidade.
+      - Nosso serviço insere os registros e retorna sucesso ou falha. 
+      - Retorna sucesso ou falha de acordo com o resultado da inserção no nosso serviço
     - Caso contrário
-      - Chama a api da bookshelf e passa o isbn e quantidade de registros a excluir.
-      - A bookshelf apaga os últimos itens cadastrados na catalogo
-      - Chama api da bookshelf que faz update do preço de todos itens ativos na tabela catalogo do evmain do vendedor em questão.
+      - Chama a api do nosso serviço e passa o isbn e quantidade de registros a excluir.
+      - Nosso serviço apaga os últimos itens cadastrados na catalogo
+      - Chama api do nosso serviço que faz update do preço de todos itens ativos na tabela catalogo do evmain do vendedor em questão.
 
 ##### PUT Estoques (F1 -> EV):
 
