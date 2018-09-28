@@ -280,7 +280,7 @@ OU
 
 De 5 em 5 minutos nós devemos fazer um pooling e mandar os pedidos em standby desde a última vez que enviamos dados com sucesso.
 
-- Busca pedidos em standby por data do Roma
+- Busca pedidos em standby por data do nosso serviço
 
 Para cada pedido:
 - Busca os dados do cliente
